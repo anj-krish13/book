@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+                {%for mssg in messages%}
+                    {{mssg}}
+                {%endfor%}
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h1 class="text-center">Book List</h1><br><br>
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>BOOK NAME</th>
+                    <th>AUTHOR</th>
+                    <th>PRICE</th>
+                    <th colspan="3">ACTION</th>
+                </tr>
+                {%for book in books%}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.book_name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price}}</td>
+                    <td><a href="{%url 'bookdetails' book.id%}" class="btn btn-outline-info">details</a></td>
+                    <td><a href="{%url 'book-delete' book.id%}" class="btn btn-outline-danger">delete</a></td>
+                    <td><a href="{%url 'book-update' book.id%}" class="btn btn-outline-success">Update</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{%endblock%}
